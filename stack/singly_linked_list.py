@@ -25,7 +25,7 @@ class LinkedList:
     def add_to_tail(self, value):
         # wrap the input value in a node
         new_node = Node(value, None)
-        # check if there is no head and no tail (i.e., the list is empty)
+        # check if there is no head (i.e., the list is empty)
         if not self.head and not self.tail:
             # if the list is initially empty, set both head and tail to the new node
             self.head = new_node
@@ -37,7 +37,7 @@ class LinkedList:
             # set the list's tail reference to the new node
             self.tail = new_node
     def remove_head(self):
-        # return None if there is no head and no tail (i.e. the list is empty)
+        # return None if there is no head (i.e. the list is empty)
         if not self.head and not self.tail:
             return None
         # if head has no next, then we have a single element in our list

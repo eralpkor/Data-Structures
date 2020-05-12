@@ -17,22 +17,21 @@ return elements in Last In First Out order.
 class Stack:
     def __init__(self):
         self.size = 0
-        self.storage = []
-
-    def __len__(self):
-        return self.size
+        # Why is our DLL a good choice to store our elements?
+        # self.storage = ?
+        self.storage = DoublyLinkedList()
 
     def push(self, value):
-        self.storage.append(value)
         self.size += 1
-        # self.size = len(self.storage)
+        self.storage.add_to_tail(value)
 
     def pop(self):
-        if self.size > 0:
-            result = self.storage.pop()
-            # self.size = len(self.storage)
-            self.size -= 1
-            return result
+        if self.size == 0:
+            return
+        self.size -= 1
+        return self.storage.remove_from_tail()
 
+    def len(self):
+        return self.size
         
 

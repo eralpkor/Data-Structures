@@ -18,6 +18,11 @@ Day 1: Implement Stacks and Queues
 Day 2: Implement a Doubly Linked List
 Day 3: Implement a Binary Search Tree
 Day 4: Implement additional traversal methods on the Binary Search Tree
+Tasks
+Part I: Implement the Stack and Queue classes
+Part II: Implement the Doubly Linked List class
+Part III: Implement the Binary Search Tree class
+Part IV: Implement traversal methods on Binary Search Trees
 ### Stacks
 * Should have the methods: `push`, `pop`, and `len`.
    * `push` adds an item to the top of the stack.

@@ -1,0 +1,11 @@
+[a, b, c]
+head = a
+a.next = b
+a.prev = none
+head = a.next
+
+head.prev = none
+
+add to tail
+[a, b, c]
+tail = c

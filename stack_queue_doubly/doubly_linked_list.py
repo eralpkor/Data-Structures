@@ -123,7 +123,6 @@ class DoublyLinkedList:
     the node was the head or the tail"""
     def delete(self, node):
         self.length -=1
-        # call the class ListNode delete
         node.delete()
         if self.head is node:
             self.head = node.next
@@ -139,21 +138,3 @@ class DoublyLinkedList:
                  > max_val else max_val
             current_node = current_node.next
         return max_val
-
-    # This function prints contents of linked list 
-    # starting from the given node 
-    def printList(self, node):
-        print('\nTraversal in forward direction')
-        while (node is not None):
-            print('% d' %(node.value))
-            last = node
-            node = node.next
-
-        print("\nTraversal in reverse direction")
-        while last is not None:
-            print(' % d' %(last.value))
-            last = last.prev
-
-llist = DoublyLinkedList()            
-llist.add_to_head(6)
-llist.printList(llist.head)

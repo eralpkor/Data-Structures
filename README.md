@@ -14,7 +14,15 @@ Stretch Goals:
 
 ## Tasks
  > NOTE: The quickest and easiest way to reliably import a file in Python is to just copy and paste the file you want to import into the same directory as the file that wants to import. This obviously isn't considered best practice, but it is the most reliable way to do it across all platforms.  If the import isn't working, feel free to try this method.
-
+Day 1: Implement Stacks and Queues
+Day 2: Implement a Doubly Linked List
+Day 3: Implement a Binary Search Tree
+Day 4: Implement additional traversal methods on the Binary Search Tree
+Tasks
+Part I: Implement the Stack and Queue classes
+Part II: Implement the Doubly Linked List class
+Part III: Implement the Binary Search Tree class
+Part IV: Implement traversal methods on Binary Search Trees
 ### Stacks
 * Should have the methods: `push`, `pop`, and `len`.
    * `push` adds an item to the top of the stack.

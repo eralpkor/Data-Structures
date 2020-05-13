@@ -102,3 +102,4 @@ print(bst.contains(34))
 
 print(bst.contains(50))
 print(bst.contains(21))
+print(bst.contains(111))

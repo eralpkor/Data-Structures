@@ -36,6 +36,7 @@ class LinkedList:
             self.tail.set_next(new_node)
             # set the list's tail reference to the new node
             self.tail = new_node
+
     def remove_head(self):
         # return None if there is no head and no tail (i.e. the list is empty)
         if not self.head and not self.tail:
@@ -55,6 +56,7 @@ class LinkedList:
         # set the head reference to the current head's next node in the list
         self.head = self.head.get_next()
         return value
+
     def remove_tail(self):
         if not self.head:
             return None
@@ -69,6 +71,7 @@ class LinkedList:
         value = self.tail.get_value()
         self.tail = current
         return value
+
     def contains(self, value):
         if not self.head:
             return False
@@ -91,6 +94,7 @@ class LinkedList:
             current = current.get_next()
         # if we've gotten here, then the target node isn't in our list
         return False
+        
     def get_max(self):
         if not self.head:
             return None

@@ -10,27 +10,24 @@ return elements in First In First Out order.
 3. What is the difference between using an array vs. a linked list when 
    implementing a Queue?
 """
+from doubly_linked_list import DoublyLinkedList
 class Queue:
     def __init__(self):
         self.size = 0
-        self.storage = []
+        self.storage = DoublyLinkedList()
     
     def __len__(self):
         return self.size
 
     def enqueue(self, value):
         # add to tail, back of the queue
-        self.storage.append(value)
+        self.storage.add_to_tail(value)
         self.size += 1
-        # self.size = len(self.storage)
 
     def dequeue(self):
         # remove and return at the front of the queue
         if self.size < 1:
             return None
-        
-        result = self.storage.pop(0)
         self.size -= 1
-        return result
-
+        return self.storage.remove_from_head()  
         

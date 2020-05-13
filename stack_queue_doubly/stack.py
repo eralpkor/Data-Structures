@@ -1,7 +1,7 @@
 # import sys
 # sys.path.append("../doubly_linked_list")
-import doubly_linked_list
-# from doubly_linked_list.doubly_linked_list import LinkedList
+# import doubly_linked_list from 
+from doubly_linked_list import DoublyLinkedList
 """
 A stack is a data structure whose primary purpose is to store and
 return elements in Last In First Out order. 

@@ -50,15 +50,17 @@ class DoublyLinkedList:
     def add_to_head(self, value):
         # 1. create a new node with the value it's given
         new_node = ListNode(value)
+        # add to the length of linked list
         self.length += 1
-        if self.head:
-            old_head = self.head.next
-            new_node.next = old_head
-            self.head = new_node
-            old_head.prev = new_node
-        else:
+        # if no head node and no tail node set it to new node
+        if not self.head and not self.tail:
             self.head = new_node
             self.tail = new_node
+        # there are nodes in linked list
+        else:
+            new_node.next = self.head
+            self.head.prev = new_node
+            self.head = new_node
 
     """Removes the List's current head node, making the
     current head's next node the new head of the List.
@@ -72,23 +74,33 @@ class DoublyLinkedList:
     as the new tail of the list. Don't forget to handle 
     the old tail node's next pointer accordingly."""
     def add_to_tail(self, value):
+        # 1. create a new node with the value it's given
         new_node = ListNode(value)
+        # 2 add to the length +1
         self.length += 1
-        if self.head and not self.tail:
+        # if the list is initially empty, set both head and tail to the new node
+        if not self.head and not self.tail:
             self.head = new_node
             self.tail = new_node
+        # we have a non-empty list, add the new node to the tail
         else:
+            # setup prev link to new node
             new_node.prev = self.tail
+            # make the link from self to new node
             self.tail.next = new_node
-            self.head = new_node
+            # link to tail as reference to the last node.
+            self.tail = new_node
 
 
     """Removes the List's current tail node, making the 
     current tail's previous node the new tail of the List.
     Returns the value of the removed Node."""
     def remove_from_tail(self):
+        # assign value to be deleted 
         value = self.tail.value
+        # remove the node from tail
         self.delete(self.tail)
+        # return the deleted node
         return value
 
     """Removes the input node from its current spot in the 

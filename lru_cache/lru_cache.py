@@ -44,15 +44,22 @@ class LRUCache:
     """
     def set(self, key, value):
         # remove items that aren't used
+        # update the node value if node already exist
         if key is self.storage:
             node = self.storage[key]
-            node.value = (key, value)
+            node.value = (key, value) # tuple
             self.order.move_to_front(node)
             return 
         if self.size == self.limit:
             del self.storage[self.order.tail.value[0]]
             self.order.remove_from_tail()
             self.size -= 1
+
+         # add the node to storeage
+        self.order.add_to_head((key, value))
+        self.storage[key] = self.order.head
+        self.size += 1
+
         # key is not in storage and limit has not been hit
             # add the key to the front of the order structure
         # if key is in storage:
@@ -61,4 +68,4 @@ class LRUCache:
             # either the head or the tail, that node will be removed
             # delete key from dictionary 
 
-        self.storage[key] = value
+        # self.storage[key] = value

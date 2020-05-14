@@ -2,6 +2,7 @@ from collections import deque
 from dll_stack import Stack
 from dll_queue import Queue
 
+
 """
 Binary search trees are a data structure that enforce an ordering over
 the data they store. That ordering in turn makes it a lot more efficient
@@ -208,22 +209,22 @@ class BinarySearchTree:
         pass
 
 
-root = BinarySearchTree(40)
-root.insert(80)
-root.insert(50)
-root.insert(70)
-root.insert(60)
-root.insert(30)
-root.insert(35)
-root.insert(25)
-root.insert(20)
-root.insert(10)
-root.insert(90)
+# root = BinarySearchTree(40)
+# root.insert(80)
+# root.insert(50)
+# root.insert(70)
+# root.insert(60)
+# root.insert(30)
+# root.insert(35)
+# root.insert(25)
+# root.insert(20)
+# root.insert(10)
+# root.insert(90)
 
 
 # root.in_order_print(root)
-print('$$$$$$$$$$ Nothing to see here $$$$$$$$$$$$$$$$')
-root.bft_print(root)
+# print('$$$$$$$$$$ Nothing to see here $$$$$$$$$$$$$$$$')
+# root.bft_print(root)
 # root.dft_print(root)
 
 # root = BinarySearchTree(20)
@@ -243,8 +244,3 @@ root.bft_print(root)
 # print(bst.contains(111))
 # print(bst.get_max())
 
-# Notes on recursion and when you need a return:
-# you need a return when the function calls will be passing a value to up to the original function call (e.g. you need a concrete answer in the end).
-# the return is what allows the value in question to leave its scope and enter the previous call's scope.
-# for_each doesn't have a return (web students remember map returns a new copy but forEach doesn't return anything)
-# because there is no need to pass data along to the original function call, there is no need for a return

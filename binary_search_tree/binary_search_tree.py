@@ -1,10 +1,14 @@
+from collections import deque
+from dll_stack import Stack
+from dll_queue import Queue
+
 """
 Binary search trees are a data structure that enforce an ordering over
 the data they store. That ordering in turn makes it a lot more efficient
 at searching for a particular piece of data in the tree.
 
 This part of the project comprises two days:
-1. Implement the methods `insert`, `contains`, `get_max`, and `for_each`
+0. Implement the methods `insert`, `contains`, `get_max`, and `for_each`
    on the BinarySearchTree class.
 2. Implement the `in_order_print`, `bft_print`, and `dft_print` methods
    on the BinarySearchTree class.
@@ -101,15 +105,43 @@ class BinarySearchTree:
             # call recursive
             self.right.for_each(fn)
 
-    # iterative for each
-    def iterative_for_each(self):
+    # iterative for each depth first
+    def iterative_for_each(self, fn):
         stack = []
+        # add the root node
+        stack.append(self)
+
+        #loop so long as the stack still has elements
+        while len(stack) > 0:
+            current = stack.pop()
+            if current.right:
+                stack.append(current.right)
+            if current.left:
+                stack.append(current.left)
+
+            fn(current.value)
+
+    # breadth first for each
+    def breadth_first_for_each(self, fn):
+        queue = deque()
+        # add the root node
+        queue.append(self)
+
+        #loop so long as the stack still has elements
+        while len(queue) > 0:
+            current = queue.pop()
+            if current.left:
+                queue.append(current.left)
+            if current.right:
+                queue.append(current.right)
+            
+            fn(current.value)
 
     # Part 2 -----------------------
 
     # Print all the values in order from low to high
     # Hint:  Use a recursive, depth first traversal
-
+# traversals require O(n) time as they visit every node exactly once.
     def in_order_print(self, node):
         if node.left:
             node.in_order_print(node.left)
@@ -121,12 +153,48 @@ class BinarySearchTree:
     # in an iterative breadth first traversal
 
     def bft_print(self, node):
-        pass
+        # print current node first then
+        # print to the right (largest node) until none
+        # go to left node (subtree) print first node
+        # print right subtree leafs left node
+        to_print = Queue()
+        to_print.enqueue(node)
+        current_node = to_print.dequeue()
+        while current_node: # is not None
+            # print current node 
+            print(current_node.value)
+            # if there is right node of current node, 
+            if current_node.right:
+                # call Queue.enqueue until no right leaf (node)
+                to_print.enqueue(current_node.right)
+            # if there is left node of current node
+
+            if current_node.left:
+                to_print.enqueue(current_node.left)
+            if to_print.size > 0:
+                current_node = to_print.dequeue()
+            else:
+                # quit when Queue size is 0
+                break
 
     # Print the value of every node, starting with the given node,
     # in an iterative depth first traversal
+    # Go left (small values) first then right (small leafs)
     def dft_print(self, node):
-        pass
+        to_print = Stack() # using stack
+        to_print.push(node) # add first node to the stack
+        # while stack length greater then 0
+        while to_print.__len__() > 0:
+            # pop the node from stack assign to var current
+            current = to_print.pop()
+            # print the current node value
+            print(current.value)
+            # if right node value exist 
+            if current.right:
+                # add to tail
+                to_print.push(current.right)
+            if current.left:
+                to_print.push(current.left)
 
     # Stretch Goals -------------------------
     # Note: Research may be required
@@ -140,17 +208,23 @@ class BinarySearchTree:
         pass
 
 
-root = BinarySearchTree(1)
-root.insert(8)
-root.insert(5)
-root.insert(7)
-root.insert(6)
-root.insert(3)
-root.insert(4)
-root.insert(2)
+root = BinarySearchTree(40)
+root.insert(80)
+root.insert(50)
+root.insert(70)
+root.insert(60)
+root.insert(30)
+root.insert(35)
+root.insert(25)
+root.insert(20)
+root.insert(10)
+root.insert(90)
 
-root.in_order_print(root)
 
+# root.in_order_print(root)
+print('$$$$$$$$$$ Nothing to see here $$$$$$$$$$$$$$$$')
+root.bft_print(root)
+# root.dft_print(root)
 
 # root = BinarySearchTree(20)
 # root.left = BinarySearchTree(10)
@@ -168,3 +242,9 @@ root.in_order_print(root)
 # print(bst.contains(21))
 # print(bst.contains(111))
 # print(bst.get_max())
+
+# Notes on recursion and when you need a return:
+# you need a return when the function calls will be passing a value to up to the original function call (e.g. you need a concrete answer in the end).
+# the return is what allows the value in question to leave its scope and enter the previous call's scope.
+# for_each doesn't have a return (web students remember map returns a new copy but forEach doesn't return anything)
+# because there is no need to pass data along to the original function call, there is no need for a return
